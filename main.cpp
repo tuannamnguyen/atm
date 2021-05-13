@@ -42,7 +42,7 @@ int main()
 			}
 			if (option == 2)
 			{
-				balance -= rutTien(soTo, loai);
+				balance -= rutTien(soTo, loai, balance);
 				cout << endl;
 				cout << "Vui long thuc hien hanh dong muon lam tiep theo." << endl;
 				cout << "1. Gui tien\n";
