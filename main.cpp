@@ -40,7 +40,7 @@ int main()
 				cout << "3. Van tin so du\n";
 				cout << "4. Thoat\n";
 			}
-			if (option == 2)
+			else if (option == 2)
 			{
 				balance -= rutTien(soTo, loai, balance);
 				cout << endl;
@@ -50,7 +50,7 @@ int main()
 				cout << "3. Van tin so du\n";
 				cout << "4. Thoat\n";
 			}
-			if (option == 3)
+			else if (option == 3)
 			{
 				vanTin(balance);
 				cout << endl;
@@ -60,7 +60,7 @@ int main()
 				cout << "3. Van tin so du\n";
 				cout << "4. Thoat\n";
 			}
-			if (option == 4)
+			else if (option == 4)
 			{
 				ofstream fout("data.txt");
 				for (int i = 0; i < 6; i++)
@@ -73,6 +73,7 @@ int main()
 				cout << "Xin cam on quy khach da su dung dich vu ATM!";
 				return 0;
 			}
+			else cout << "Lua chon khong hop le. Xin vui long chon lai. ";
 		}
 	}
 	else return 0;
