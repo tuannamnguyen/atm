@@ -11,7 +11,7 @@ int main()
 	ifstream fin("data.txt"); 
 	while (fin >> menh_gia >> soto) soTo[menh_gia] = soto;
 
-	long long int balance = 0;
+	unsigned long long int balance = 0;
 	ifstream balance_in("balance.txt");
 	balance_in >> balance;
 	
@@ -43,6 +43,7 @@ int main()
 			else if (option == 2)
 			{
 				balance -= rutTien(soTo, loai, balance);
+				if (balance <= 0) balance = 0;
 				cout << endl;
 				cout << "Vui long thuc hien hanh dong muon lam tiep theo." << endl;
 				cout << "1. Gui tien\n";

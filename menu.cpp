@@ -28,12 +28,14 @@ int guiTien(map<int, int>& soTo, int loai[])
 	}
 	return c;
 }
-int rutTien(map<int, int>& soTo, int loai[], int balance)
+int rutTien(map<int, int>& soTo, int loai[], unsigned long long int balance)
 {
+	
 	bool to_continue = 1;
 	int c = 0;
 	while (to_continue)
 	{
+
 		bool check = false;
 		for (int i = 0; i < 6; i++)
 		{
@@ -56,11 +58,17 @@ int rutTien(map<int, int>& soTo, int loai[], int balance)
 		cout << "Vui long nhap so tien muon rut: ";
 		while (cin >> withdraw)
 		{
+			if (balance <= 0)
+			{
+				cout << "Tai khoan cua ban khong con tien. Xin vui long gui tien vao. " << endl;
+				return 0;
+			}
 			if (withdraw > balance) cout << "So tien ban muon rut lon hon so du cua ban. Xin vui long chon so tien khac. ";
 			else if (withdraw % 10000 != 0) cout << "So tien ban nhap khong phai boi cua 10000. Xin vui long nhap lai. ";
 			else break;
 		}
 
+		balance -= withdraw;
 		map<int, int> out;
 		for (int i = 0; i < 6; i++)
 		{
