@@ -42,24 +42,24 @@ int main()
 				cout << "\n\n";
 				if (option == 1)
 				{
-					balance += guiTien(soTo, loai);
+					guiTien(soTo, loai, balance);
 					cout << endl;
 					cout << "1. Gui tien\n";
 					cout << "2. Rut tien\n";
 					cout << "3. Van tin so du\n";
 					cout << "4. Thoat\n";
-					cout << "Vui long thuc hien hanh dong muon lam tiep theo: " << endl;
+					cout << "Vui long thuc hien hanh dong muon lam tiep theo: ";
 				}
 				else if (option == 2)
 				{
-					balance -= rutTien(soTo, loai, balance);
+					rutTien(soTo, loai, balance);
 					if (balance <= 0) balance = 0;
 					cout << endl;
 					cout << "1. Gui tien\n";
 					cout << "2. Rut tien\n";
 					cout << "3. Van tin so du\n";
 					cout << "4. Thoat\n";
-					cout << "Vui long thuc hien hanh dong muon lam tiep theo: " << endl;
+					cout << "Vui long thuc hien hanh dong muon lam tiep theo: ";
 				}
 				else if (option == 3)
 				{
@@ -69,7 +69,7 @@ int main()
 					cout << "2. Rut tien\n";
 					cout << "3. Van tin so du\n";
 					cout << "4. Thoat\n";
-					cout << "Vui long thuc hien hanh dong muon lam tiep theo: " << endl;
+					cout << "Vui long thuc hien hanh dong muon lam tiep theo: ";
 				}
 				else if (option == 4)
 				{
