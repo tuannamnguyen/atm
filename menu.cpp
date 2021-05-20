@@ -5,11 +5,11 @@
 #include<ctime>
 #include<fstream>
 #include<string>
+#include<vector>
+#include "login.h"
 using namespace std;
-void guiTien(map<int, int>& soTo, int loai[], unsigned long long int &balance)
+int guiTien(map<int, int>& soTo, int loai[])
 {
-	ofstream history_out("history.txt", ios::app);
-
 	int menh_gia, so;
 	cout << "Cac menh gia tien hop le: 10000, 20000, 50000, 100000, 200000, 500000" << endl;
 	bool to_continue = 1;
@@ -30,6 +30,7 @@ void guiTien(map<int, int>& soTo, int loai[], unsigned long long int &balance)
 		c += menh_gia * so;
 		cout << "Ban da gui vao " << menh_gia * so << endl;
 
+		ofstream history_out("history.txt", ios::app);
 		auto timenow = chrono::system_clock::to_time_t(chrono::system_clock::now()); // get current time
 		history_out << "Ban da gui " << menh_gia * so << " vao " << ctime(&timenow) << endl;
 
@@ -37,11 +38,10 @@ void guiTien(map<int, int>& soTo, int loai[], unsigned long long int &balance)
 		cin >> to_continue;
 		cout << "\n\n";
 	}
-	balance += c;
+	return c;
 }
-void rutTien(map<int, int>& soTo, int loai[], unsigned long long int &balance)
+int rutTien(map<int, int>& soTo, int loai[], unsigned long long int balance)
 {
-	ofstream history_out("history.txt", ios::app);
 
 	bool to_continue = 1;
 	int c = 0;
@@ -61,24 +61,28 @@ void rutTien(map<int, int>& soTo, int loai[], unsigned long long int &balance)
 		if (check == false)
 		{
 			cout << "May chua co tien. Vui long gui tien vao. ";
-			return;
+			return 0;
 		}
 
-		
+
 		cout << "So tien muon rut phai la boi cua 10000." << endl;
 		int withdraw;
 		cout << "Vui long nhap so tien muon rut: ";
 		while (cin >> withdraw)
 		{
-			if (balance == 0)
+			if (balance <= 0)
 			{
 				cout << "Tai khoan cua ban khong con tien. Xin vui long gui tien vao. " << endl;
-				return;
+				return 0;
 			}
 			if (withdraw > balance) cout << "So tien ban muon rut lon hon so du cua ban. Xin vui long chon so tien khac. ";
 			else if (withdraw % 10000 != 0) cout << "So tien ban nhap khong phai boi cua 10000. Xin vui long nhap lai. ";
 			else break;
 		}
+
+		ofstream history_out("history.txt", ios::app);
+		auto timenow = chrono::system_clock::to_time_t(chrono::system_clock::now()); // get current time
+		history_out << "Ban da rut " << withdraw << " vao " << ctime(&timenow) << endl;
 
 		balance -= withdraw;
 		map<int, int> out;
@@ -94,26 +98,24 @@ void rutTien(map<int, int>& soTo, int loai[], unsigned long long int &balance)
 		if (withdraw != 0)
 		{
 			cout << "Giao dich khong thanh cong. May khong du tien de tra cho ban." << endl;
-			return;
+			return 0;
 		}
 		for (int i = 0; i < 6; i++)
 		{
 			if (out[loai[i]] == 0) continue;
 			else cout << "Ban da nhan duoc " << out[loai[i]] << " to " << loai[i] << endl;
 		}
-
-		auto timenow = chrono::system_clock::to_time_t(chrono::system_clock::now()); // get current time
-		history_out << "Ban da rut " << withdraw << " vao " << ctime(&timenow) << endl;
-
 		cout << "Ban co muon tiep tuc rut tien khong? Nhan 1 neu muon tiep tuc. Nhan 0 neu muon thoat. ";
 		cin >> to_continue;
 		cout << "\n\n";
-		
+
 	}
+	return c;
 }
-void vanTin(const long long int& balance)
+void vanTin(const unsigned long long int& balance)
 {
 	ifstream history_in("history.txt");
+
 	if (balance == 0) cout << "Tai khoan cua ban hien khong co tien." << endl;
 	else
 	{
