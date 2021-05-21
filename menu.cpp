@@ -78,7 +78,7 @@ int rutTien(map<int, int>& soTo, int loai[], unsigned long long int balance)
 			else break;
 		}
 
-
+		int temp = withdraw;
 		balance -= withdraw;
 		map<int, int> out;
 		for (int i = 0; i < 6; i++)
@@ -98,7 +98,7 @@ int rutTien(map<int, int>& soTo, int loai[], unsigned long long int balance)
 
 		ofstream history_out("history.txt", ios::app);
 		auto timenow = chrono::system_clock::to_time_t(chrono::system_clock::now()); // get current time
-		history_out << "Ban da rut " << c << " vao " << ctime(&timenow) << endl;
+		history_out << "Ban da rut " << temp << " vao " << ctime(&timenow) << endl;
 
 		for (int i = 0; i < 6; i++)
 		{
