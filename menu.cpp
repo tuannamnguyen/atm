@@ -5,15 +5,13 @@
 #include<ctime>
 #include<fstream>
 #include<string>
-#include<vector>
-#include "login.h"
 using namespace std;
 int guiTien(map<int, int>& soTo, int loai[])
 {
 	int menh_gia, so;
 	cout << "Cac menh gia tien hop le: 10000, 20000, 50000, 100000, 200000, 500000" << endl;
 	bool to_continue = 1;
-	int c = 0;
+	int c = 0; //tong so tien da gui vao
 	while (to_continue == true)
 	{
 		cout << "Nhap menh gia ban muon gui: ";
@@ -44,7 +42,7 @@ int rutTien(map<int, int>& soTo, int loai[], unsigned long long int balance)
 {
 
 	bool to_continue = 1;
-	int c = 0;
+	int c = 0; // tong so tien sau cac lan rut
 	while (to_continue)
 	{
 
@@ -80,15 +78,12 @@ int rutTien(map<int, int>& soTo, int loai[], unsigned long long int balance)
 			else break;
 		}
 
-		ofstream history_out("history.txt", ios::app);
-		auto timenow = chrono::system_clock::to_time_t(chrono::system_clock::now()); // get current time
-		history_out << "Ban da rut " << withdraw << " vao " << ctime(&timenow) << endl;
 
 		balance -= withdraw;
 		map<int, int> out;
 		for (int i = 0; i < 6; i++)
 		{
-			int t = withdraw / loai[i];
+			int t = withdraw / loai[i]; //so to se lay ra cua menh gia loai[i]
 			if (t > soTo[loai[i]]) t = soTo[loai[i]];
 			out[loai[i]] = t;
 			soTo[loai[i]] -= t;
@@ -100,6 +95,11 @@ int rutTien(map<int, int>& soTo, int loai[], unsigned long long int balance)
 			cout << "Giao dich khong thanh cong. May khong du tien de tra cho ban." << endl;
 			return 0;
 		}
+
+		ofstream history_out("history.txt", ios::app);
+		auto timenow = chrono::system_clock::to_time_t(chrono::system_clock::now()); // get current time
+		history_out << "Ban da rut " << withdraw << " vao " << ctime(&timenow) << endl;
+
 		for (int i = 0; i < 6; i++)
 		{
 			if (out[loai[i]] == 0) continue;
