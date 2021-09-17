@@ -13,7 +13,7 @@ int main()
 
 	
 
-	if (login())
+	if (login() == true)
 	{
 		unsigned long long int balance = 0;
 		ifstream balance_in("balance.txt");
