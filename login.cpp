@@ -39,6 +39,6 @@ bool login()
 
 		}
 	}
-	return true;
+	return 1;
 
 }
