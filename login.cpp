@@ -1,7 +1,7 @@
 ﻿#include <iostream>
 using namespace std;
-string id = "12345";
-string pass = "54321";
+string id = "12345678";
+string pass = "87654321";
 
 bool login() {
     string id_in;
